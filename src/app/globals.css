@@ -1,0 +1,241 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:is(.dark *));
+
+/* -------------------------------------------------------------------------- */
+/* Design tokens                                                              */
+/* Semantic color roles authored independently per theme (not auto-inverted). */
+/* -------------------------------------------------------------------------- */
+:root {
+  /* Surfaces & text — warm off-white paper, warm near-black ink */
+  --background: oklch(0.985 0.002 95);
+  --foreground: oklch(0.205 0.012 65);
+  --card: oklch(0.995 0.002 95);
+  --card-foreground: oklch(0.205 0.012 65);
+  --popover: oklch(0.995 0.002 95);
+  --popover-foreground: oklch(0.205 0.012 65);
+
+  /* Brand accent (cobalt/indigo) — the single configurable accent */
+  --primary: oklch(0.54 0.19 268);
+  --primary-foreground: oklch(0.985 0.003 268);
+
+  /* Subtle surfaces */
+  --secondary: oklch(0.96 0.004 95);
+  --secondary-foreground: oklch(0.25 0.012 65);
+  --muted: oklch(0.96 0.004 95);
+  --muted-foreground: oklch(0.52 0.012 70);
+  --accent: oklch(0.955 0.006 268);
+  --accent-foreground: oklch(0.25 0.02 268);
+
+  --destructive: oklch(0.58 0.22 25);
+  --destructive-foreground: oklch(0.985 0 0);
+
+  /* Lines & focus */
+  --border: oklch(0.9 0.004 95);
+  --input: oklch(0.64 0.008 95);
+  --ring: oklch(0.54 0.19 268);
+
+  /* Radii — buttons 12px base, cards 18px */
+  --radius: 0.75rem;
+  --radius-card: 1.125rem;
+
+  /* Layout */
+  --header-height: 4rem;
+
+  /* Soft, low, diffuse shadow — used only on hover to lift surfaces */
+  --shadow-soft: 0 1px 2px 0 rgb(20 22 28 / 0.04), 0 8px 24px -12px rgb(20 22 28 / 0.12);
+}
+
+.dark {
+  /* Cool near-black instrument panel */
+  --background: oklch(0.17 0.008 265);
+  --foreground: oklch(0.95 0.004 265);
+  --card: oklch(0.21 0.01 265);
+  --card-foreground: oklch(0.95 0.004 265);
+  --popover: oklch(0.21 0.01 265);
+  --popover-foreground: oklch(0.95 0.004 265);
+
+  --primary: oklch(0.62 0.17 266);
+  --primary-foreground: oklch(0.16 0.01 265);
+
+  --secondary: oklch(0.25 0.01 265);
+  --secondary-foreground: oklch(0.95 0.004 265);
+  --muted: oklch(0.25 0.01 265);
+  --muted-foreground: oklch(0.7 0.012 265);
+  --accent: oklch(0.28 0.02 266);
+  --accent-foreground: oklch(0.95 0.004 265);
+
+  --destructive: oklch(0.62 0.2 25);
+  --destructive-foreground: oklch(0.98 0 0);
+
+  --border: oklch(0.28 0.01 265);
+  --input: oklch(0.52 0.014 265);
+  --ring: oklch(0.62 0.17 266);
+
+  --shadow-soft: 0 1px 2px 0 rgb(0 0 0 / 0.3), 0 12px 32px -16px rgb(0 0 0 / 0.6);
+}
+
+/* -------------------------------------------------------------------------- */
+/* Theme mapping — expose tokens as Tailwind utilities                        */
+/* -------------------------------------------------------------------------- */
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-mono);
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-card: var(--radius-card);
+
+  --shadow-soft: var(--shadow-soft);
+
+  /* Fluid, clamped type scale — no unbounded viewport scaling */
+  --text-display-xl: clamp(3.5rem, 2.2rem + 5vw, 5.5rem);
+  --text-display-xl--line-height: 0.98;
+  --text-display-xl--letter-spacing: -0.03em;
+
+  --text-display-l: clamp(2.5rem, 1.8rem + 3vw, 3.75rem);
+  --text-display-l--line-height: 1.02;
+  --text-display-l--letter-spacing: -0.025em;
+
+  --text-heading-m: clamp(1.625rem, 1.4rem + 1vw, 2rem);
+  --text-heading-m--line-height: 1.1;
+  --text-heading-m--letter-spacing: -0.02em;
+
+  --text-heading-s: clamp(1.25rem, 1.15rem + 0.3vw, 1.375rem);
+  --text-heading-s--line-height: 1.2;
+  --text-heading-s--letter-spacing: -0.01em;
+
+  --text-body-l: clamp(1.125rem, 1.1rem + 0.1vw, 1.1875rem);
+  --text-body-l--line-height: 1.6;
+
+  --text-body-m: 1rem;
+  --text-body-m--line-height: 1.65;
+
+  --text-body-s: 0.875rem;
+  --text-body-s--line-height: 1.55;
+
+  --text-mono-label: clamp(0.75rem, 0.72rem + 0.1vw, 0.8125rem);
+  --text-mono-label--line-height: 1.4;
+  --text-mono-label--letter-spacing: 0.04em;
+
+  /* Engineered ease-out for entrances */
+  --ease-out-expo: cubic-bezier(0.22, 1, 0.36, 1);
+
+  /* One-shot entrance for non-LCP elements */
+  --animate-fade-up: fade-up 0.5s var(--ease-out-expo) both;
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/*
+ * Scroll-triggered reveal — driven natively by the view() timeline, so it runs
+ * on the compositor (opacity + transform only) with zero JS and no scroll
+ * listeners. Gated by @supports so browsers without scroll-driven animations
+ * show content normally, and by reduced-motion so it's fully opt-out.
+ */
+@keyframes reveal {
+  from {
+    opacity: 0;
+    transform: translateY(1rem);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    .reveal {
+      animation: reveal 0.6s var(--ease-out-expo) both;
+      animation-timeline: view();
+      animation-range: entry 5% entry 45%;
+    }
+  }
+}
+
+/* -------------------------------------------------------------------------- */
+/* Base layer                                                                 */
+/* -------------------------------------------------------------------------- */
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: var(--header-height);
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+    text-rendering: optimizeLegibility;
+    /* Clip decorative bleed (glows, frames) without a horizontal scroll container. */
+    overflow-x: clip;
+  }
+
+  /*
+   * Smooth theme change on static elements. No flash on load: next-themes sets
+   * the class before first paint, so no color property changes post-paint.
+   * Interactive elements keep their own (faster) transition-colors utility.
+   */
+  @media (prefers-reduced-motion: no-preference) {
+    *,
+    *::before,
+    *::after {
+      transition-property: background-color, border-color, color, fill;
+      transition-duration: 200ms;
+      transition-timing-function: ease;
+    }
+  }
+
+  /* Reduced-motion: neutralize all non-essential motion globally. */
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.001ms !important;
+      animation-delay: 0ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
