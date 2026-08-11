@@ -194,6 +194,33 @@ flowchart LR
   p_links --> DBTN["Live / GitHub buttons"]
 ```
 
+## 7. Personal gallery (`galleryItem` collection)
+
+```mermaid
+flowchart LR
+  subgraph G["🗂️ galleryItem"]
+    direction TB
+    g_title["title *"]
+    g_img["image * (+ alt *)"]
+    g_cap["caption"]
+    g_cat["category"]
+    g_date["date"]
+    g_mode["displayMode (auto/featured/landscape/portrait/square)"]
+    g_order["order"]
+  end
+  g_img --> TILE["gallery tile (aspect-reserved, lazy)"]
+  g_img --> LIGHT["full-screen viewer (object-contain)"]
+  g_mode --> ROLE["grid slot: auto = from aspect ratio, else forced"]
+  g_order --> SEQ["display order (ascending)"]
+  g_cap --> CAP["caption under tile + in viewer"]
+  g_cat --> META["category · date meta line"]
+  g_date --> META
+  g_title --> A11Y["viewer/aria label fallback"]
+```
+
+Empty by design (fallback = `[]`); the whole section is hidden until you add photos in the
+Studio. `displayMode = auto` needs no code change — the layout adapts to each image.
+
 ---
 
 **Source of truth:** schemas live in

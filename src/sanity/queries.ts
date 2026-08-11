@@ -99,6 +99,28 @@ export const contactQuery = `*[_type == "contact"][0]{
 }`;
 
 /* -------------------------------------------------------------------------- */
+/* Gallery                                                                    */
+/* -------------------------------------------------------------------------- */
+const GALLERY_IMAGE = `{
+  "src": asset->url,
+  "width": asset->metadata.dimensions.width,
+  "height": asset->metadata.dimensions.height,
+  "aspectRatio": asset->metadata.dimensions.aspectRatio,
+  "blurDataURL": asset->metadata.lqip,
+  "alt": coalesce(alt, "")
+}`;
+
+export const galleryItemsQuery = `*[_type == "galleryItem" && defined(image.asset)] | order(order asc, _createdAt asc){
+  "id": _id,
+  title,
+  "image": image ${GALLERY_IMAGE},
+  caption,
+  category,
+  date,
+  "displayMode": coalesce(displayMode, "auto")
+}`;
+
+/* -------------------------------------------------------------------------- */
 /* Projects                                                                   */
 /* -------------------------------------------------------------------------- */
 export const projectCardsQuery = `*[_type == "project" && !featured] | order(orderRank asc) ${PROJECT_CARD}`;

@@ -1,9 +1,10 @@
 import type { SchemaTypeDefinition } from "sanity";
 
 import { documentTypes } from "@/sanity/schema/documents";
+import { galleryItem } from "@/sanity/schema/gallery";
 import { objectTypes } from "@/sanity/schema/objects";
 
-export const schemaTypes: SchemaTypeDefinition[] = [...objectTypes, ...documentTypes];
+export const schemaTypes: SchemaTypeDefinition[] = [...objectTypes, ...documentTypes, galleryItem];
 
 /** Document type names that exist as a single editable instance (not a collection). */
 export const singletonTypes = new Set([

@@ -10,6 +10,7 @@ import {
   currentStatusQuery,
   experienceQuery,
   featuredProjectQuery,
+  galleryItemsQuery,
   heroQuery,
   projectBySlugQuery,
   projectCardsQuery,
@@ -28,6 +29,7 @@ import {
   skillsContent,
   socialLinks,
 } from "@/lib/content";
+import { galleryFallback } from "@/lib/gallery";
 import {
   getAllProjectCards,
   getAllProjectSlugs as localProjectSlugs,
@@ -43,6 +45,7 @@ import type {
   ContactContent,
   CurrentStatus,
   ExperienceContent,
+  GalleryItem,
   HeroContent,
   ProjectCardData,
   ProjectDetail,
@@ -125,6 +128,14 @@ export function getContact(): Promise<ContactContent> {
     query: contactQuery,
     tags: ["contact"],
     fallback: contactContent,
+  });
+}
+
+export function getGalleryItems(): Promise<GalleryItem[]> {
+  return sanityFetch<GalleryItem[]>({
+    query: galleryItemsQuery,
+    tags: ["galleryItem"],
+    fallback: galleryFallback,
   });
 }
 

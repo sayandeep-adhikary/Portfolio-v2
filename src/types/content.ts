@@ -180,3 +180,19 @@ export type ContactContent = {
   email: string;
   location: string;
 };
+
+export type GalleryDisplayMode = "auto" | "featured" | "landscape" | "portrait" | "square";
+
+/** A gallery image carries its intrinsic aspect ratio for layout classification. */
+export type GalleryImage = ProfileImage & { aspectRatio: number };
+
+export type GalleryItem = {
+  id: string;
+  title: string;
+  image: GalleryImage;
+  caption?: string;
+  category?: string;
+  date?: string;
+  displayMode: GalleryDisplayMode;
+  order?: number;
+};
