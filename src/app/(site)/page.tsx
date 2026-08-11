@@ -2,6 +2,7 @@ import { About } from "@/components/sections/about/about";
 import { Achievements } from "@/components/sections/achievements/achievements";
 import { Certifications } from "@/components/sections/certifications/certifications";
 import { Contact } from "@/components/sections/contact/contact";
+import { EngineeringFootprint } from "@/components/sections/footprint/engineering-footprint";
 import { Experience } from "@/components/sections/experience/experience";
 import { Featured } from "@/components/sections/featured/featured";
 import { Gallery } from "@/components/sections/gallery/gallery";
@@ -47,6 +48,7 @@ export default async function HomePage() {
       <Skills />
       <Experience />
       <Certifications />
+      <EngineeringFootprint />
       <Achievements />
       <Gallery />
       <Contact />
