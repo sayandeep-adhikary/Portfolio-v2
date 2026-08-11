@@ -20,7 +20,7 @@ const PROJECT_CARD = `{
   description,
   category,
   year,
-  technologies,
+  "technologies": coalesce(technologies, []),
   "image": image ${IMAGE},
   "links": {
     "live": links.live,
@@ -37,13 +37,13 @@ const PROJECT_DETAIL = `{
   year,
   role,
   outcome,
-  technologies,
+  "technologies": coalesce(technologies, []),
   "image": image ${IMAGE},
-  "gallery": gallery[] ${IMAGE},
+  "gallery": coalesce(gallery[] ${IMAGE}, []),
   overview,
   architecture,
-  challenges,
-  lessons,
+  "challenges": coalesce(challenges, []),
+  "lessons": coalesce(lessons, []),
   "links": {
     "live": links.live,
     "github": links.github,
@@ -70,28 +70,28 @@ export const socialLinksQuery = `*[_type == "socialLink"] | order(orderRank asc)
 
 export const aboutQuery = `*[_type == "about"][0]{
   index, eyebrow, heading, intro, career,
-  focus[]{ label, detail },
+  "focus": coalesce(focus[]{ label, detail }, []),
   "resume": { "label": resume.label, "href": resume.file.asset->url, "meta": resume.meta }
 }`;
 
 export const skillsQuery = `*[_type == "skills"][0]{
   index, eyebrow, heading,
-  categories[]{ title, caption, skills[]{ name, primary } }
+  "categories": coalesce(categories[]{ title, caption, "skills": coalesce(skills[]{ name, primary }, []) }, [])
 }`;
 
 export const experienceQuery = `*[_type == "experience"][0]{
   index, eyebrow, heading,
-  entries[]{ company, position, period, location, type, summary, responsibilities, achievements, technologies }
+  "entries": coalesce(entries[]{ company, position, period, location, type, summary, "responsibilities": coalesce(responsibilities, []), "achievements": coalesce(achievements, []), "technologies": coalesce(technologies, []) }, [])
 }`;
 
 export const certificationsQuery = `*[_type == "certifications"][0]{
   index, eyebrow, heading,
-  items[]{ "id": _key, title, issuer, issued, category, credentialId, credentialUrl, "badge": badge ${IMAGE} }
+  "items": coalesce(items[]{ "id": _key, title, issuer, issued, category, credentialId, credentialUrl, "badge": badge ${IMAGE} }, [])
 }`;
 
 export const achievementsQuery = `*[_type == "achievements"][0]{
   index, eyebrow, heading,
-  items[]{ "id": _key, title, context, year, icon, url }
+  "items": coalesce(items[]{ "id": _key, title, context, year, icon, url }, [])
 }`;
 
 export const contactQuery = `*[_type == "contact"][0]{
