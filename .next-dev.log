@@ -1,0 +1,35 @@
+
+> portfolio@0.1.0 dev
+> next dev
+
+   Γû▓ Next.js 15.5.22
+   - Local:        http://localhost:3000
+   - Network:      http://10.232.45.121:3000
+   - Environments: .env.local
+   - Experiments (use with caution):
+     ┬╖ optimizePackageImports
+
+ Γ£ô Starting...
+ Γ£ô Ready in 7.6s
+ Γùï Compiling / ...
+ Γ£ô Compiled / in 82.9s (9866 modules)
+ GET / 200 in 46453ms
+ Γùï Compiling /icon ...
+ Γ£ô Compiled /icon in 12.3s (9877 modules)
+ GET /icon?b43e9d9faf997548 200 in 13464ms
+ Γ£ô Compiled in 4.9s (3608 modules)
+ GET / 200 in 7234ms
+ GET / 200 in 2497ms
+ Γ£ô Compiled in 3.6s (9877 modules)
+ GET / 200 in 1476ms
+ Γ£ô Compiled in 1901ms (3608 modules)
+ GET / 200 in 9328ms
+ GET / 200 in 11550ms
+ GET / 200 in 8672ms
+ Γ£ô Compiled in 5.2s (9859 modules)
+ GET / 200 in 4234ms
+ GET / 200 in 4242ms
+ Γùï Compiling /manifest.webmanifest ...
+ Γ£ô Compiled /manifest.webmanifest in 2.6s (9864 modules)
+ GET /manifest.webmanifest 200 in 3268ms
+[?25h

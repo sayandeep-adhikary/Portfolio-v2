@@ -33,7 +33,7 @@ export async function Hero() {
     <Section
       id="top"
       spacing="none"
-      className="relative isolate flex min-h-[calc(100svh-var(--header-height))] items-center py-16 md:py-24"
+      className="relative isolate flex min-h-[calc(100svh-var(--header-height))] items-center overflow-x-clip py-16 md:py-24"
     >
       <Glow className="top-[-5rem] right-[-6rem] h-[24rem] w-[24rem] md:h-[32rem] md:w-[32rem]" />
       <div className="grid w-full grid-cols-1 items-center gap-12 lg:grid-cols-12 lg:gap-8">

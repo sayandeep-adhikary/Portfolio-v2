@@ -60,7 +60,11 @@ export function Section({
   const revealClass = reveal ? "reveal" : undefined;
   return (
     <section
-      className={cn(sectionVariants({ spacing }), glow && "relative isolate", className)}
+      className={cn(
+        sectionVariants({ spacing }),
+        glow && "relative isolate overflow-x-clip",
+        className,
+      )}
       {...props}
     >
       {glow ? <Glow className={GLOW_POSITION[glow]} /> : null}

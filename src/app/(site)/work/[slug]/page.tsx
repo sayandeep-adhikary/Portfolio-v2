@@ -88,7 +88,7 @@ export default async function ProjectPage({ params }: { params: Promise<PagePara
     <article>
       <JsonLd data={jsonLd} />
 
-      <Container className="relative isolate flex flex-col gap-12 py-16 md:gap-16 md:py-24">
+      <Container className="relative isolate flex flex-col gap-12 overflow-x-clip py-16 md:gap-16 md:py-24">
         <Glow className="top-[-3rem] right-[-6rem] h-[22rem] w-[22rem] opacity-40" />
         <header className="flex flex-col gap-6">
           <Link
