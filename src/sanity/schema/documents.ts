@@ -69,7 +69,12 @@ export const socialLink = defineType({
       validation: (r) => r.required(),
     }),
     defineField({ name: "label", type: "string", validation: (r) => r.required() }),
-    defineField({ name: "url", type: "url", validation: (r) => r.required() }),
+    defineField({
+      name: "url",
+      type: "url",
+      // Allow mailto:/tel: so email and phone social links validate.
+      validation: (r) => r.required().uri({ scheme: ["http", "https", "mailto", "tel"] }),
+    }),
     defineField({
       name: "orderRank",
       type: "string",

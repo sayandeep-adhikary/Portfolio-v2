@@ -12,6 +12,13 @@ export const imageWithAlt = defineType({
       title: "Alternative text",
       type: "string",
       description: "Describe the image for screen readers and SEO.",
+      // Require alt only once an image is actually uploaded.
+      validation: (rule) =>
+        rule.custom((alt, context) => {
+          const parent = context.parent as { asset?: unknown } | undefined;
+          if (parent?.asset && !alt) return "Add alt text for this image.";
+          return true;
+        }),
     }),
   ],
 });
