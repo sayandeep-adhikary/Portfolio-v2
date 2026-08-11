@@ -32,7 +32,7 @@ export async function Featured() {
             <Mono tone="muted">{year}</Mono>
           </div>
 
-          <Heading id="featured-heading" as="h2" size="display-l">
+          <Heading id="featured-heading" as="h2" size="display-l" gradient>
             {title}
           </Heading>
 

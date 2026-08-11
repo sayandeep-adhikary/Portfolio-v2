@@ -20,7 +20,7 @@ export async function Skills() {
             </span>
             <Mono tone="muted">{eyebrow}</Mono>
           </div>
-          <Heading id="stack-heading" as="h2" size="display-l">
+          <Heading id="stack-heading" as="h2" size="display-l" gradient>
             {heading}
           </Heading>
         </header>

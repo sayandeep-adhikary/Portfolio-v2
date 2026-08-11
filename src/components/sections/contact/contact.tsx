@@ -6,6 +6,7 @@ import { StatusIndicator } from "@/components/sections/status-indicator";
 import { GithubIcon, LinkedinIcon, MailIcon } from "@/components/ui/brand-icons";
 import { Button } from "@/components/ui/button";
 import { CornerTicks } from "@/components/ui/corner-ticks";
+import { Glow } from "@/components/ui/glow";
 import { Icon } from "@/components/ui/icon";
 import { Link } from "@/components/ui/link";
 import { Section } from "@/components/ui/section";
@@ -60,8 +61,9 @@ export async function Contact() {
 
   return (
     <Section id="contact" reveal aria-labelledby="contact-heading">
-      <div className="rounded-card border-border bg-card/40 relative overflow-hidden border p-6 sm:p-10 lg:p-16">
+      <div className="rounded-card border-border bg-card/40 relative isolate overflow-hidden border p-6 sm:p-10 lg:p-16">
         <CornerTicks />
+        <Glow className="bottom-[-7rem] left-[-5rem] h-[20rem] w-[20rem] opacity-50" />
         <div className="grid gap-12 lg:grid-cols-2 lg:gap-16">
           <div className="flex min-w-0 flex-col gap-8">
             <div className="flex flex-col gap-4">
@@ -72,7 +74,7 @@ export async function Contact() {
                 </span>
                 <Mono tone="muted">{eyebrow}</Mono>
               </div>
-              <Heading id="contact-heading" as="h2" size="display-l" className="max-w-md">
+              <Heading id="contact-heading" as="h2" size="display-l" gradient className="max-w-md">
                 {heading}
               </Heading>
               <Text size="body-l" tone="muted" className="max-w-md">

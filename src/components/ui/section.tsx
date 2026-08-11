@@ -1,6 +1,7 @@
 import { cva, type VariantProps } from "class-variance-authority";
 import type { ComponentProps } from "react";
 
+import { Glow } from "@/components/ui/glow";
 import { cn } from "@/lib/utils";
 
 /* -------------------------------------------------------------------------- */
@@ -37,19 +38,32 @@ type SectionProps = ComponentProps<"section"> &
     contained?: boolean;
     /** Opt into the scroll-triggered fade+slide reveal for this section's content. */
     reveal?: boolean;
+    /** Adds a subtle ambient color glow on the given side. */
+    glow?: "left" | "right";
   };
+
+// Gentle, static ambient glow positions (kept off to the side, low opacity).
+const GLOW_POSITION = {
+  left: "top-1/2 left-[-9rem] h-[20rem] w-[20rem] -translate-y-1/2 opacity-30",
+  right: "top-1/2 right-[-9rem] h-[20rem] w-[20rem] -translate-y-1/2 opacity-30",
+} as const;
 
 export function Section({
   className,
   spacing,
   contained = true,
   reveal = false,
+  glow,
   children,
   ...props
 }: SectionProps) {
   const revealClass = reveal ? "reveal" : undefined;
   return (
-    <section className={cn(sectionVariants({ spacing }), className)} {...props}>
+    <section
+      className={cn(sectionVariants({ spacing }), glow && "relative isolate", className)}
+      {...props}
+    >
+      {glow ? <Glow className={GLOW_POSITION[glow]} /> : null}
       {contained ? (
         <Container className={revealClass}>{children}</Container>
       ) : revealClass ? (

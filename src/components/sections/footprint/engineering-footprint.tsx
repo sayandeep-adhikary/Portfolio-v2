@@ -108,7 +108,7 @@ export async function EngineeringFootprint() {
     <Section id="footprint" reveal aria-labelledby="footprint-heading">
       <header className="flex max-w-2xl flex-col gap-4">
         <Mono tone="accent">Activity</Mono>
-        <Heading id="footprint-heading" as="h2" size="display-l">
+        <Heading id="footprint-heading" as="h2" size="display-l" gradient>
           Engineering footprint
         </Heading>
         <Text size="body-l" tone="muted" className="max-w-xl">

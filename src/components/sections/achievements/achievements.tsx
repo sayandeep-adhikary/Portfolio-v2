@@ -23,7 +23,7 @@ export async function Achievements() {
             </span>
             <Mono tone="muted">{eyebrow}</Mono>
           </div>
-          <Heading id="achievements-heading" as="h2" size="display-l">
+          <Heading id="achievements-heading" as="h2" size="display-l" gradient>
             {heading}
           </Heading>
         </header>

@@ -5,13 +5,13 @@ import {
   type ContributionWeek,
 } from "@/lib/footprint";
 
-// Intensity tinted with the brand accent (not GitHub green); level 0 uses the muted surface.
+// Intensity tinted with the electric-cyan secondary accent; level 0 uses the muted surface.
 const LEVEL_CLASS = [
   "bg-muted",
-  "bg-primary/25",
-  "bg-primary/45",
-  "bg-primary/70",
-  "bg-primary",
+  "bg-accent-2/25",
+  "bg-accent-2/45",
+  "bg-accent-2/70",
+  "bg-accent-2",
 ] as const;
 
 // A compact recent window keeps the strip readable and free of horizontal scroll on mobile.

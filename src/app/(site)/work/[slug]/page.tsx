@@ -8,6 +8,7 @@ import { JsonLd } from "@/components/seo/json-ld";
 import { GithubIcon } from "@/components/ui/brand-icons";
 import { Button } from "@/components/ui/button";
 import { Divider } from "@/components/ui/divider";
+import { Glow } from "@/components/ui/glow";
 import { Icon } from "@/components/ui/icon";
 import { Link } from "@/components/ui/link";
 import { Container } from "@/components/ui/section";
@@ -87,7 +88,8 @@ export default async function ProjectPage({ params }: { params: Promise<PagePara
     <article>
       <JsonLd data={jsonLd} />
 
-      <Container className="flex flex-col gap-12 py-16 md:gap-16 md:py-24">
+      <Container className="relative isolate flex flex-col gap-12 py-16 md:gap-16 md:py-24">
+        <Glow className="top-[-3rem] right-[-6rem] h-[22rem] w-[22rem] opacity-40" />
         <header className="flex flex-col gap-6">
           <Link
             href="/#projects"
@@ -110,7 +112,7 @@ export default async function ProjectPage({ params }: { params: Promise<PagePara
               </span>
               <Mono tone="muted">{project.role}</Mono>
             </div>
-            <Heading as="h1" size="display-l">
+            <Heading as="h1" size="display-l" gradient>
               {project.title}
             </Heading>
             <Text size="body-l" className="max-w-2xl">

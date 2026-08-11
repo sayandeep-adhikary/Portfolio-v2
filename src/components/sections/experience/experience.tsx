@@ -8,7 +8,7 @@ export async function Experience() {
   const { index, eyebrow, heading, entries } = await getExperience();
 
   return (
-    <Section id="experience" reveal aria-labelledby="experience-heading">
+    <Section id="experience" reveal glow="right" aria-labelledby="experience-heading">
       <div className="flex flex-col gap-10 md:gap-12">
         <header className="flex max-w-2xl flex-col gap-4">
           <div className="flex items-center gap-3">
@@ -18,7 +18,7 @@ export async function Experience() {
             </span>
             <Mono tone="muted">{eyebrow}</Mono>
           </div>
-          <Heading id="experience-heading" as="h2" size="display-l">
+          <Heading id="experience-heading" as="h2" size="display-l" gradient>
             {heading}
           </Heading>
         </header>

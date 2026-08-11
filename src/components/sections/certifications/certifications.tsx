@@ -26,7 +26,7 @@ export async function Certifications() {
             </span>
             <Mono tone="muted">{eyebrow}</Mono>
           </div>
-          <Heading id="certifications-heading" as="h2" size="display-l">
+          <Heading id="certifications-heading" as="h2" size="display-l" gradient>
             {heading}
           </Heading>
         </header>

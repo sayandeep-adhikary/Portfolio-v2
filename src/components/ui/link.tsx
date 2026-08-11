@@ -9,9 +9,9 @@ const linkVariants = cva(
   {
     variants: {
       variant: {
-        // Underline draws in from the left on hover/focus (GPU-cheap background-size).
+        // Cyan underline draws in from the left on hover/focus (GPU-cheap background-size).
         underline:
-          "bg-[linear-gradient(currentColor,currentColor)] bg-[length:0%_1px] bg-left-bottom bg-no-repeat pb-px transition-[background-size] duration-200 ease-[var(--ease-out-expo)] hover:bg-[length:100%_1px] focus-visible:bg-[length:100%_1px]",
+          "bg-[linear-gradient(var(--accent-2),var(--accent-2))] bg-[length:0%_2px] bg-left-bottom bg-no-repeat pb-px transition-[background-size] duration-200 ease-[var(--ease-out-expo)] hover:bg-[length:100%_2px] focus-visible:bg-[length:100%_2px]",
         subtle: "text-muted-foreground transition-colors hover:text-foreground",
         plain: "",
       },

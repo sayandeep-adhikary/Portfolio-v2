@@ -13,10 +13,10 @@ export async function Gallery() {
   if (items.length === 0) return null;
 
   return (
-    <Section id="gallery" reveal aria-labelledby="gallery-heading">
+    <Section id="gallery" reveal glow="left" aria-labelledby="gallery-heading">
       <header className="flex max-w-2xl flex-col gap-4">
         <Mono tone="accent">Personal</Mono>
-        <Heading id="gallery-heading" as="h2" size="display-l">
+        <Heading id="gallery-heading" as="h2" size="display-l" gradient>
           A little beyond the code.
         </Heading>
         <Text size="body-l" tone="muted" className="max-w-xl">

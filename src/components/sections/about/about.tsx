@@ -19,7 +19,7 @@ export async function About() {
             </span>
             <Mono tone="muted">{eyebrow}</Mono>
           </div>
-          <Heading id="about-heading" as="h2" size="display-l" className="max-w-md">
+          <Heading id="about-heading" as="h2" size="display-l" gradient className="max-w-md">
             {heading}
           </Heading>
         </header>

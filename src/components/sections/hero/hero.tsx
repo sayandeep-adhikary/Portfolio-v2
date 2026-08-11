@@ -2,6 +2,7 @@ import { HeroPortrait } from "@/components/sections/hero/hero-portrait";
 import { SocialLinks } from "@/components/sections/social-links";
 import { StatusIndicator } from "@/components/sections/status-indicator";
 import { Button } from "@/components/ui/button";
+import { Glow } from "@/components/ui/glow";
 import { Icon } from "@/components/ui/icon";
 import { Section } from "@/components/ui/section";
 import { Heading, Mono, Text } from "@/components/ui/typography";
@@ -32,8 +33,9 @@ export async function Hero() {
     <Section
       id="top"
       spacing="none"
-      className="relative flex min-h-[calc(100svh-var(--header-height))] items-center py-16 md:py-24"
+      className="relative isolate flex min-h-[calc(100svh-var(--header-height))] items-center py-16 md:py-24"
     >
+      <Glow className="top-[-5rem] right-[-6rem] h-[24rem] w-[24rem] md:h-[32rem] md:w-[32rem]" />
       <div className="grid w-full grid-cols-1 items-center gap-12 lg:grid-cols-12 lg:gap-8">
         <div className="flex flex-col gap-6 md:gap-8 lg:col-span-7">
           <div
@@ -56,7 +58,15 @@ export async function Hero() {
           </div>
 
           {/* LCP element — rendered instantly, never animated. */}
-          <Heading as="h1" size="display-xl" className="max-w-4xl">
+          <Heading
+            as="h1"
+            size="display-xl"
+            className="max-w-4xl bg-clip-text text-transparent"
+            style={{
+              backgroundImage:
+                "linear-gradient(115deg, color-mix(in oklch, var(--foreground) 85%, var(--primary)) 15%, color-mix(in oklch, var(--foreground) 52%, var(--accent-2)) 100%)",
+            }}
+          >
             {statement}
           </Heading>
 

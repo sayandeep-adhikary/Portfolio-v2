@@ -14,9 +14,14 @@ const headingVariants = cva("font-sans text-foreground text-balance", {
       "heading-m": "text-heading-m font-medium",
       "heading-s": "text-heading-s font-medium",
     },
+    gradient: {
+      true: "text-gradient-brand",
+      false: "",
+    },
   },
   defaultVariants: {
     size: "heading-m",
+    gradient: false,
   },
 });
 
@@ -27,9 +32,9 @@ type HeadingProps = Omit<ComponentProps<"h2">, "color"> &
     as?: HeadingLevel;
   };
 
-export function Heading({ as = "h2", size, className, ...props }: HeadingProps) {
+export function Heading({ as = "h2", size, gradient, className, ...props }: HeadingProps) {
   const Tag = as as ElementType;
-  return <Tag className={cn(headingVariants({ size }), className)} {...props} />;
+  return <Tag className={cn(headingVariants({ size, gradient }), className)} {...props} />;
 }
 
 /* -------------------------------------------------------------------------- */

@@ -20,7 +20,7 @@ export async function Projects() {
   }));
 
   return (
-    <Section id="projects" reveal aria-labelledby="projects-heading">
+    <Section id="projects" reveal glow="left" aria-labelledby="projects-heading">
       <div className="flex flex-col gap-10 md:gap-12">
         <header className="flex max-w-2xl flex-col gap-4">
           <div className="flex items-center gap-3">
@@ -30,7 +30,7 @@ export async function Projects() {
             </span>
             <Mono tone="muted">{eyebrow}</Mono>
           </div>
-          <Heading id="projects-heading" as="h2" size="display-l">
+          <Heading id="projects-heading" as="h2" size="display-l" gradient>
             {heading}
           </Heading>
         </header>
