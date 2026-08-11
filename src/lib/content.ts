@@ -25,7 +25,7 @@ export const currentStatus: CurrentStatus = {
 export const socialLinks: SocialLink[] = [
   { platform: "github", label: "GitHub", href: "https://github.com/username" },
   { platform: "linkedin", label: "LinkedIn", href: "https://www.linkedin.com/in/username" },
-  { platform: "twitter", label: "X", href: "https://x.com/username" },
+  { platform: "instagram", label: "Instagram", href: "https://www.instagram.com/username" },
   { platform: "email", label: "Email", href: "mailto:hello@example.com" },
 ];
 

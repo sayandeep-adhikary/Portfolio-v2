@@ -1,14 +1,14 @@
 import type { ComponentType, SVGProps } from "react";
 
-import { GithubIcon, LinkedinIcon, MailIcon, XIcon } from "@/components/ui/brand-icons";
+import { GithubIcon, InstagramIcon, LinkedinIcon, MailIcon } from "@/components/ui/brand-icons";
 import { Link } from "@/components/ui/link";
 import type { SocialLink, SocialPlatform } from "@/types/content";
 import { cn } from "@/lib/utils";
 
-const PLATFORM_ICON: Record<SocialPlatform, ComponentType<SVGProps<SVGSVGElement>>> = {
+const PLATFORM_ICON: Partial<Record<SocialPlatform, ComponentType<SVGProps<SVGSVGElement>>>> = {
   github: GithubIcon,
   linkedin: LinkedinIcon,
-  twitter: XIcon,
+  instagram: InstagramIcon,
   email: MailIcon,
 };
 
@@ -19,6 +19,8 @@ export function SocialLinks({ links, className }: { links: SocialLink[]; classNa
     <ul className={cn("flex items-center gap-1", className)}>
       {links.map((link) => {
         const IconComponent = PLATFORM_ICON[link.platform];
+        // Skip links with an unknown platform or empty URL (e.g. stale CMS data).
+        if (!IconComponent || !link.href) return null;
         return (
           <li key={link.platform}>
             <Link

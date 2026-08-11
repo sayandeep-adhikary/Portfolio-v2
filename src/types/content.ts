@@ -5,7 +5,7 @@ export type CurrentStatus = {
   label: string;
 };
 
-export type SocialPlatform = "github" | "linkedin" | "twitter" | "email";
+export type SocialPlatform = "github" | "linkedin" | "instagram" | "email";
 
 export type SocialLink = {
   platform: SocialPlatform;

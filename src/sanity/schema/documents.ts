@@ -62,7 +62,7 @@ export const socialLink = defineType({
         list: [
           { title: "GitHub", value: "github" },
           { title: "LinkedIn", value: "linkedin" },
-          { title: "Twitter / X", value: "twitter" },
+          { title: "Instagram", value: "instagram" },
           { title: "Email", value: "email" },
         ],
       },
