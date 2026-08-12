@@ -45,6 +45,8 @@ const nextConfig: NextConfig = {
   images: {
     // Serve modern formats first; AVIF falls back to WebP then original.
     formats: ["image/avif", "image/webp"],
+    // Allowed optimizer quality values (showcase imagery uses 90).
+    qualities: [75, 90],
     // Only the Sanity image CDN is permitted as a remote source.
     remotePatterns: [{ protocol: "https", hostname: "cdn.sanity.io" }],
   },

@@ -14,15 +14,24 @@ export function ProjectGallery({ images }: { images: ProfileImage[] }) {
               key={image.src}
               className="rounded-card border-border bg-muted relative aspect-[16/10] overflow-hidden border"
             >
+              {/* Soft backdrop from the LQIP fills any letterbox area (no extra request). */}
+              {image.blurDataURL ? (
+                <div
+                  aria-hidden
+                  className="absolute inset-0 scale-110 bg-cover bg-center blur-2xl"
+                  style={{ backgroundImage: `url(${image.blurDataURL})` }}
+                />
+              ) : null}
               <Image
                 src={image.src}
                 alt={image.alt}
                 fill
                 loading="lazy"
+                quality={90}
                 sizes="(min-width: 1024px) 40vw, 100vw"
                 placeholder={image.blurDataURL ? "blur" : "empty"}
                 blurDataURL={image.blurDataURL}
-                className="object-cover"
+                className="object-contain"
               />
             </li>
           ))
