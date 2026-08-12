@@ -171,6 +171,12 @@ export const experience = defineType({
           type: "object",
           fields: [
             defineField({ name: "company", type: "string", validation: (r) => r.required() }),
+            defineField({
+              name: "logo",
+              title: "Company logo",
+              type: "imageWithAlt",
+              description: "Optional logo shown beside the company name.",
+            }),
             defineField({ name: "position", type: "string", validation: (r) => r.required() }),
             defineField({ name: "period", type: "string" }),
             defineField({ name: "location", type: "string" }),
@@ -180,7 +186,7 @@ export const experience = defineType({
             defineField({ name: "achievements", type: "array", of: [{ type: "string" }] }),
             defineField({ name: "technologies", type: "array", of: [{ type: "string" }] }),
           ],
-          preview: { select: { title: "position", subtitle: "company" } },
+          preview: { select: { title: "position", subtitle: "company", media: "logo" } },
         }),
       ],
     }),

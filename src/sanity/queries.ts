@@ -81,7 +81,7 @@ export const skillsQuery = `*[_type == "skills"][0]{
 
 export const experienceQuery = `*[_type == "experience"][0]{
   index, eyebrow, heading,
-  "entries": coalesce(entries[]{ company, position, period, location, type, summary, "responsibilities": coalesce(responsibilities, []), "achievements": coalesce(achievements, []), "technologies": coalesce(technologies, []) }, [])
+  "entries": coalesce(entries[]{ company, "logo": logo ${IMAGE}, position, period, location, type, summary, "responsibilities": coalesce(responsibilities, []), "achievements": coalesce(achievements, []), "technologies": coalesce(technologies, []) }, [])
 }`;
 
 export const certificationsQuery = `*[_type == "certifications"][0]{

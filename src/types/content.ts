@@ -80,6 +80,7 @@ export type SkillsContent = {
 
 export type ExperienceEntry = {
   company: string;
+  logo?: ProfileImage | null;
   position: string;
   period: string;
   location?: string;

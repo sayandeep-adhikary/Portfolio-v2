@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 import { Icon } from "@/components/ui/icon";
 import { Tag } from "@/components/ui/tag";
 import { Heading, Mono, Text } from "@/components/ui/typography";
@@ -65,6 +67,23 @@ export function ExperienceCard({
       className="group rounded-card border-border bg-card hover:border-foreground/15 border transition-colors"
     >
       <summary className="rounded-card focus-visible:ring-ring focus-visible:ring-offset-background flex cursor-pointer list-none items-center gap-4 p-6 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none md:p-8 [&::-webkit-details-marker]:hidden">
+        <div className="border-border bg-muted relative grid size-12 shrink-0 place-items-center overflow-hidden rounded-md border">
+          {entry.logo ? (
+            <Image
+              src={entry.logo.src}
+              alt={entry.logo.alt}
+              fill
+              sizes="48px"
+              placeholder={entry.logo.blurDataURL ? "blur" : "empty"}
+              blurDataURL={entry.logo.blurDataURL}
+              className="object-contain p-1.5"
+            />
+          ) : (
+            <span aria-hidden className="text-muted-foreground text-body-m font-mono font-medium">
+              {entry.company.charAt(0)}
+            </span>
+          )}
+        </div>
         <div className="flex flex-1 flex-col gap-1.5">
           <div className="flex flex-wrap items-baseline gap-x-2 gap-y-1">
             <Heading as="h3" size="heading-s">
