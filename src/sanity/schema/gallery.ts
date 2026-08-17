@@ -1,3 +1,4 @@
+import { orderRankField, orderRankOrdering } from "@sanity/orderable-document-list";
 import { defineField, defineType } from "sanity";
 
 /** A single personal photograph for the homepage gallery. */
@@ -5,6 +6,7 @@ export const galleryItem = defineType({
   name: "galleryItem",
   title: "Gallery item",
   type: "document",
+  orderings: [orderRankOrdering],
   fields: [
     defineField({
       name: "title",
@@ -40,11 +42,7 @@ export const galleryItem = defineType({
       initialValue: "auto",
       validation: (r) => r.required(),
     }),
-    defineField({
-      name: "order",
-      type: "number",
-      description: "Lower numbers appear first.",
-    }),
+    orderRankField({ type: "galleryItem" }),
   ],
   preview: {
     select: { title: "title", subtitle: "displayMode", media: "image" },

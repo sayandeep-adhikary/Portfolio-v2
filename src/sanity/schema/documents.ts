@@ -1,3 +1,4 @@
+import { orderRankField, orderRankOrdering } from "@sanity/orderable-document-list";
 import { defineArrayMember, defineField, defineType } from "sanity";
 
 /* Singleton section header fields reused across most documents. */
@@ -54,6 +55,7 @@ export const socialLink = defineType({
   name: "socialLink",
   title: "Social link",
   type: "document",
+  orderings: [orderRankOrdering],
   fields: [
     defineField({
       name: "platform",
@@ -75,12 +77,7 @@ export const socialLink = defineType({
       // Allow mailto:/tel: so email and phone social links validate.
       validation: (r) => r.required().uri({ scheme: ["http", "https", "mailto", "tel"] }),
     }),
-    defineField({
-      name: "orderRank",
-      type: "string",
-      description: "Sort key (ascending).",
-      hidden: false,
-    }),
+    orderRankField({ type: "socialLink" }),
   ],
   preview: { select: { title: "label", subtitle: "platform" } },
 });
@@ -278,6 +275,7 @@ export const project = defineType({
   name: "project",
   title: "Project",
   type: "document",
+  orderings: [orderRankOrdering],
   fields: [
     defineField({ name: "title", type: "string", validation: (r) => r.required() }),
     defineField({
@@ -287,7 +285,7 @@ export const project = defineType({
       validation: (r) => r.required(),
     }),
     defineField({ name: "featured", type: "boolean", initialValue: false }),
-    defineField({ name: "orderRank", type: "string", description: "Sort key (ascending)." }),
+    orderRankField({ type: "project" }),
     defineField({ name: "description", type: "text", rows: 2 }),
     defineField({ name: "category", type: "string" }),
     defineField({ name: "year", type: "string" }),

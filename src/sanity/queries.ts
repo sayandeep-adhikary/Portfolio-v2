@@ -110,7 +110,7 @@ const GALLERY_IMAGE = `{
   "alt": coalesce(alt, "")
 }`;
 
-export const galleryItemsQuery = `*[_type == "galleryItem" && defined(image.asset)] | order(order asc, _createdAt asc){
+export const galleryItemsQuery = `*[_type == "galleryItem" && defined(image.asset)] | order(orderRank asc){
   "id": _id,
   title,
   "image": image ${GALLERY_IMAGE},

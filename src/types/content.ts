@@ -195,5 +195,4 @@ export type GalleryItem = {
   category?: string;
   date?: string;
   displayMode: GalleryDisplayMode;
-  order?: number;
 };

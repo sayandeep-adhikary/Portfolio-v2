@@ -1,3 +1,4 @@
+import { orderableDocumentListDeskItem } from "@sanity/orderable-document-list";
 import type { StructureResolver } from "sanity/structure";
 
 const SINGLETONS: { type: string; title: string }[] = [
@@ -13,9 +14,10 @@ const SINGLETONS: { type: string; title: string }[] = [
 
 /**
  * Custom desk: section singletons are edited in place (one document each),
- * while projects and social links are ordinary collections.
+ * while projects, gallery, and social links are drag-orderable collections
+ * (the plugin maintains `orderRank`, which the frontend sorts by).
  */
-export const structure: StructureResolver = (S) =>
+export const structure: StructureResolver = (S, context) =>
   S.list()
     .title("Content")
     .items([
@@ -23,7 +25,7 @@ export const structure: StructureResolver = (S) =>
         S.listItem().title(title).id(type).child(S.document().schemaType(type).documentId(type)),
       ),
       S.divider(),
-      S.documentTypeListItem("project").title("Projects"),
-      S.documentTypeListItem("galleryItem").title("Gallery"),
-      S.documentTypeListItem("socialLink").title("Social links"),
+      orderableDocumentListDeskItem({ type: "project", title: "Projects", S, context }),
+      orderableDocumentListDeskItem({ type: "galleryItem", title: "Gallery", S, context }),
+      orderableDocumentListDeskItem({ type: "socialLink", title: "Social links", S, context }),
     ]);

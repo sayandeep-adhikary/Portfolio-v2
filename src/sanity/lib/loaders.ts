@@ -159,6 +159,15 @@ export function getProjectCards(): Promise<ProjectCardData[]> {
   });
 }
 
+/** Every project (incl. featured), ordered by orderRank — used by the /work index. */
+export function getAllProjects(): Promise<ProjectCardData[]> {
+  return sanityFetch<ProjectCardData[]>({
+    query: allProjectsNavQuery,
+    tags: ["project"],
+    fallback: getAllProjectCards(),
+  });
+}
+
 export function getProjectBySlug(slug: string): Promise<ProjectDetail | null> {
   return sanityFetch<ProjectDetail | null>({
     query: projectBySlugQuery,
