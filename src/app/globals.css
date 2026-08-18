@@ -262,17 +262,14 @@
   }
 
   /*
-   * Smooth theme change on static elements. No flash on load: next-themes sets
-   * the class before first paint, so no color property changes post-paint.
-   * Interactive elements keep their own (faster) transition-colors utility.
+   * Avoid animating every element on the page when the theme class changes.
+   * Transitioning thousands of color properties makes the toggle feel laggy and
+   * expensive, while a small root-level transition keeps the swap responsive.
    */
   @media (prefers-reduced-motion: no-preference) {
-    *,
-    *::before,
-    *::after {
-      transition-property: background-color, border-color, color, fill;
-      transition-duration: 200ms;
-      transition-timing-function: ease;
+    html,
+    body {
+      transition: background-color 120ms ease, color 120ms ease;
     }
   }
 
