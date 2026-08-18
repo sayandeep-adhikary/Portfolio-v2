@@ -117,7 +117,6 @@ export const galleryItemsQuery = `*[_type == "galleryItem" && defined(image.asse
   caption,
   category,
   date,
-  "displayMode": coalesce(displayMode, "auto")
 }`;
 
 /* -------------------------------------------------------------------------- */

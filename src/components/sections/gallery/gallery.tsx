@@ -3,7 +3,7 @@ import Image from "next/image";
 import { GalleryInteractive } from "@/components/sections/gallery/gallery-interactive";
 import { Section } from "@/components/ui/section";
 import { Heading, Mono, Text } from "@/components/ui/typography";
-import { formatGalleryDate, GALLERY_ROLE_LAYOUT, resolveGalleryRole } from "@/lib/gallery";
+import { formatGalleryDate } from "@/lib/gallery";
 import { getGalleryItems } from "@/sanity/lib/loaders";
 
 export async function Gallery() {
@@ -25,30 +25,29 @@ export async function Gallery() {
       </header>
 
       <GalleryInteractive items={items}>
-        <ul className="mt-12 grid grid-flow-row-dense grid-cols-2 gap-3 sm:gap-4 md:mt-16 md:grid-cols-12 md:gap-5">
+        <ul className="mt-12 columns-1 gap-3 sm:columns-2 md:mt-16 lg:columns-3 xl:columns-4">
           {items.map((item, index) => {
-            const role = resolveGalleryRole(item.displayMode, item.image.aspectRatio);
-            const layout = GALLERY_ROLE_LAYOUT[role];
             const meta = [item.category, formatGalleryDate(item.date)].filter(Boolean).join(" · ");
 
             return (
-              <li key={item.id} className={layout.spanClass}>
-                <figure className="group flex flex-col gap-2">
+              <li key={item.id} className="mb-3 block break-inside-avoid">
+                <figure className="group flex h-full flex-col gap-2">
                   <button
                     type="button"
                     data-gallery-index={index}
                     aria-label={`View photo: ${item.image.alt || item.title}`}
-                    className={`bg-muted border-border focus-visible:ring-ring focus-visible:ring-offset-background group-hover:border-foreground/15 relative block w-full overflow-hidden rounded-lg border transition-colors focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none ${layout.aspectClass}`}
+                    className="bg-muted border-border focus-visible:ring-ring focus-visible:ring-offset-background group-hover:border-foreground/15 relative block w-full overflow-hidden rounded-lg border transition-colors focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none"
                   >
                     <Image
                       src={item.image.src}
                       alt={item.image.alt}
-                      fill
+                      width={item.image.width}
+                      height={item.image.height}
                       loading="lazy"
-                      sizes={layout.sizes}
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                       placeholder={item.image.blurDataURL ? "blur" : "empty"}
                       blurDataURL={item.image.blurDataURL}
-                      className="object-cover transition-[scale] duration-500 ease-[var(--ease-out-expo)] group-hover:scale-[1.02]"
+                      className="block h-auto w-full object-contain transition-[transform,filter] duration-500 ease-[var(--ease-out-expo)] group-hover:scale-[1.02]"
                     />
                   </button>
 

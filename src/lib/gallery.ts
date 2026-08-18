@@ -1,4 +1,4 @@
-import type { GalleryDisplayMode, GalleryItem } from "@/types/content";
+import type { GalleryItem } from "@/types/content";
 
 /** Local fallback — intentionally empty. No fake personal photos are invented. */
 export const galleryFallback: GalleryItem[] = [];
@@ -6,18 +6,14 @@ export const galleryFallback: GalleryItem[] = [];
 export type GalleryRole = "featured" | "landscape" | "portrait" | "square";
 
 /** Auto-classification thresholds on the image aspect ratio (width / height). */
-export const LANDSCAPE_MIN_RATIO = 1.4;
-export const PORTRAIT_MAX_RATIO = 0.8;
+export const LANDSCAPE_MIN_RATIO = 1.2;
+export const PORTRAIT_MAX_RATIO = 0.85;
 
 /**
- * Presentation role for a gallery item: a manual `displayMode` always wins;
- * `auto` derives the role from the intrinsic aspect ratio. Deterministic.
+ * Role derived solely from the intrinsic aspect ratio; no manual display mode is
+ * needed for the masonry gallery.
  */
-export function resolveGalleryRole(
-  displayMode: GalleryDisplayMode,
-  aspectRatio: number,
-): GalleryRole {
-  if (displayMode !== "auto") return displayMode;
+export function resolveGalleryRole(aspectRatio: number): GalleryRole {
   if (!Number.isFinite(aspectRatio) || aspectRatio <= 0) return "square";
   if (aspectRatio >= LANDSCAPE_MIN_RATIO) return "landscape";
   if (aspectRatio <= PORTRAIT_MAX_RATIO) return "portrait";
@@ -25,34 +21,33 @@ export function resolveGalleryRole(
 }
 
 /**
- * Grid placement + responsive `sizes` per role. Column spans and aspect ratios
- * are tuned so non-featured tiles resolve to equal image heights on desktop
- * (portrait col-3, square col-4, landscape col-6 all ≈ the same height), which
- * keeps the editorial grid gap-free without a masonry library.
+ * Masonry-friendly roles. Each role still preserves the editor's intended visual
+ * emphasis via aspect ratio, but the layout itself is column-based so mixed
+ * Sanity image sizes fill the wall without leaving awkward blank gaps.
  */
 export const GALLERY_ROLE_LAYOUT: Record<
   GalleryRole,
   { spanClass: string; aspectClass: string; sizes: string }
 > = {
   featured: {
-    spanClass: "col-span-2 md:col-span-12",
-    aspectClass: "aspect-[4/5] sm:aspect-[16/10] md:aspect-[16/9]",
-    sizes: "(min-width: 768px) 1152px, 100vw",
+    spanClass: "w-full",
+    aspectClass: "aspect-[5/3] md:aspect-[18/9]",
+    sizes: "(min-width: 1280px) 32vw, (min-width: 768px) 40vw, 100vw",
   },
   landscape: {
-    spanClass: "col-span-2 md:col-span-6",
-    aspectClass: "aspect-[3/2]",
-    sizes: "(min-width: 768px) 576px, 100vw",
+    spanClass: "w-full",
+    aspectClass: "aspect-[21/9] md:aspect-[24/10]",
+    sizes: "(min-width: 1280px) 28vw, (min-width: 768px) 36vw, 100vw",
   },
   portrait: {
-    spanClass: "col-span-1 md:col-span-3",
-    aspectClass: "aspect-[3/4]",
-    sizes: "(min-width: 768px) 288px, 50vw",
+    spanClass: "w-full",
+    aspectClass: "aspect-[4/5]",
+    sizes: "(min-width: 1280px) 18vw, (min-width: 768px) 24vw, 50vw",
   },
   square: {
-    spanClass: "col-span-1 md:col-span-4",
+    spanClass: "w-full",
     aspectClass: "aspect-square",
-    sizes: "(min-width: 768px) 384px, 50vw",
+    sizes: "(min-width: 1280px) 18vw, (min-width: 768px) 24vw, 50vw",
   },
 };
 

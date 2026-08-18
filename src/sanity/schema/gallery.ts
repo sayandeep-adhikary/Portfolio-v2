@@ -23,28 +23,9 @@ export const galleryItem = defineType({
     defineField({ name: "caption", type: "string", description: "Optional short caption." }),
     defineField({ name: "category", type: "string", description: "Optional grouping label." }),
     defineField({ name: "date", type: "date", description: "Optional date taken." }),
-    defineField({
-      name: "displayMode",
-      title: "Display mode",
-      type: "string",
-      description:
-        "Art direction. 'Auto' picks a layout from the image's aspect ratio; the others force a slot.",
-      options: {
-        list: [
-          { title: "Auto (from aspect ratio)", value: "auto" },
-          { title: "Featured (large slot)", value: "featured" },
-          { title: "Landscape", value: "landscape" },
-          { title: "Portrait", value: "portrait" },
-          { title: "Square", value: "square" },
-        ],
-        layout: "radio",
-      },
-      initialValue: "auto",
-      validation: (r) => r.required(),
-    }),
     orderRankField({ type: "galleryItem" }),
   ],
   preview: {
-    select: { title: "title", subtitle: "displayMode", media: "image" },
+    select: { title: "title", media: "image" },
   },
 });

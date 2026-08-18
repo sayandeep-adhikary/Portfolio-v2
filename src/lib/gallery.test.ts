@@ -14,29 +14,22 @@ describe("galleryFallback", () => {
 });
 
 describe("resolveGalleryRole", () => {
-  it("classifies auto by aspect ratio", () => {
-    expect(resolveGalleryRole("auto", 1.78)).toBe("landscape");
-    expect(resolveGalleryRole("auto", 1.0)).toBe("square");
-    expect(resolveGalleryRole("auto", 0.56)).toBe("portrait");
+  it("classifies by aspect ratio", () => {
+    expect(resolveGalleryRole(1.78)).toBe("landscape");
+    expect(resolveGalleryRole(1.0)).toBe("square");
+    expect(resolveGalleryRole(0.56)).toBe("portrait");
   });
 
   it("applies the guideline thresholds at the boundaries", () => {
-    expect(resolveGalleryRole("auto", 1.4)).toBe("landscape");
-    expect(resolveGalleryRole("auto", 0.8)).toBe("portrait");
-    expect(resolveGalleryRole("auto", 1.2)).toBe("square");
-  });
-
-  it("honors manual overrides regardless of ratio", () => {
-    expect(resolveGalleryRole("featured", 0.5)).toBe("featured");
-    expect(resolveGalleryRole("landscape", 0.5)).toBe("landscape");
-    expect(resolveGalleryRole("portrait", 2)).toBe("portrait");
-    expect(resolveGalleryRole("square", 2)).toBe("square");
+    expect(resolveGalleryRole(1.2)).toBe("landscape");
+    expect(resolveGalleryRole(0.85)).toBe("portrait");
+    expect(resolveGalleryRole(1.1)).toBe("square");
   });
 
   it("falls back to square for invalid ratios", () => {
-    expect(resolveGalleryRole("auto", 0)).toBe("square");
-    expect(resolveGalleryRole("auto", Number.NaN)).toBe("square");
-    expect(resolveGalleryRole("auto", -1)).toBe("square");
+    expect(resolveGalleryRole(0)).toBe("square");
+    expect(resolveGalleryRole(Number.NaN)).toBe("square");
+    expect(resolveGalleryRole(-1)).toBe("square");
   });
 });
 
@@ -48,6 +41,13 @@ describe("GALLERY_ROLE_LAYOUT", () => {
       expect(layout.aspectClass).toBeTruthy();
       expect(layout.sizes).toContain("vw");
     }
+  });
+
+  it("preserves display-mode emphasis through distinct masonry aspect classes", () => {
+    expect(GALLERY_ROLE_LAYOUT.featured.aspectClass).toContain("aspect-[5/3]");
+    expect(GALLERY_ROLE_LAYOUT.landscape.aspectClass).toContain("aspect-[21/9]");
+    expect(GALLERY_ROLE_LAYOUT.portrait.aspectClass).toContain("aspect-[4/5]");
+    expect(GALLERY_ROLE_LAYOUT.square.aspectClass).toContain("aspect-square");
   });
 });
 
