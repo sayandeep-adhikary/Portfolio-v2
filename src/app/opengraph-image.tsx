@@ -26,13 +26,22 @@ export default function OpenGraphImage() {
       <div style={{ display: "flex", alignItems: "center", gap: "16px" }}>
         <div
           style={{
-            width: 26,
-            height: 26,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            width: 44,
+            height: 44,
             background: "#5b63d3",
-            borderRadius: 5,
-            transform: "rotate(45deg)",
+            borderRadius: 12,
+            color: "#ffffff",
+            fontSize: 22,
+            fontWeight: 700,
+            letterSpacing: "-0.02em",
+            fontFamily: "sans-serif",
           }}
-        />
+        >
+          SA
+        </div>
         <span
           style={{
             color: "#f5f5f4",

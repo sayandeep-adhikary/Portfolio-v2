@@ -3,8 +3,7 @@ import { ImageResponse } from "next/og";
 export const size = { width: 512, height: 512 };
 export const contentType = "image/png";
 
-// Brand mark favicon — generated so no static asset is required.
-// The diamond is drawn as a rotated square (no glyph) to avoid a font download.
+// Brand mark favicon — an "SA" monogram generated from the owner's initials.
 export default function Icon() {
   return new ImageResponse(
     <div
@@ -19,13 +18,21 @@ export default function Icon() {
     >
       <div
         style={{
-          width: 220,
-          height: 220,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          width: 360,
+          height: 360,
+          borderRadius: 96,
           background: "#5b63d3",
-          borderRadius: 28,
-          transform: "rotate(45deg)",
+          color: "#ffffff",
+          fontSize: 200,
+          fontWeight: 700,
+          letterSpacing: -8,
         }}
-      />
+      >
+        SA
+      </div>
     </div>,
     { ...size },
   );
