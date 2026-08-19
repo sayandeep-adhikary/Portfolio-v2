@@ -30,7 +30,7 @@ export default async function WorkPage() {
 
   return (
     <Container className="relative isolate flex flex-col gap-12 overflow-x-clip py-16 md:gap-16 md:py-24">
-      <Glow className="top-[-3rem] right-[-6rem] h-[22rem] w-[22rem] opacity-40" />
+      <Glow className="top-[-2rem] right-[-3rem] h-[14rem] w-[14rem] opacity-40 sm:right-[-5rem] sm:h-[18rem] sm:w-[18rem] md:top-[-3rem] md:right-[-6rem] md:h-[22rem] md:w-[22rem]" />
       <header className="flex flex-col gap-6">
         <Link
           href="/#projects"
