@@ -120,14 +120,14 @@ This project is ready for deployment on Vercel and other compatible Node-based e
 
 This project is protected by an all-rights-reserved copyright. See [LICENSE](LICENSE) for the complete legal terms.
 
-## Do I need visuals?
+## Gallery
 
-Not strictly, but a few screenshots help a lot on GitHub:
+![Homepage](https://placehold.co/1400x900/111827/ffffff?text=Homepage)
 
-- landing page hero
-- project showcase grid
-- mobile view
-- Sanity Studio editor view
-- a dark/light theme comparison
+![Project showcase](https://placehold.co/1400x900/1f2937/ffffff?text=Project+Showcase)
 
-These give the repo a stronger first impression and make it feel more like a finished portfolio rather than just a codebase.
+![Mobile experience](https://placehold.co/900x1600/0f172a/ffffff?text=Mobile+View)
+
+![Studio workflow](https://placehold.co/1400x900/374151/ffffff?text=Studio+Workflow)
+
+![Theme preview](https://placehold.co/1400x900/111827/ffffff?text=Theme+Preview)
