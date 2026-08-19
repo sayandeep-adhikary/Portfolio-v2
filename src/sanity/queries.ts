@@ -26,7 +26,8 @@ const PROJECT_CARD = `{
     "live": links.live,
     "github": links.github,
     "caseStudy": "/work/" + slug.current
-  }
+  },
+  orderNumber
 }`;
 
 const PROJECT_DETAIL = `{
@@ -49,6 +50,7 @@ const PROJECT_DETAIL = `{
     "github": links.github,
     "caseStudy": "/work/" + slug.current
   },
+  orderNumber,
   featured
 }`;
 
@@ -122,13 +124,13 @@ export const galleryItemsQuery = `*[_type == "galleryItem" && defined(image.asse
 /* -------------------------------------------------------------------------- */
 /* Projects                                                                   */
 /* -------------------------------------------------------------------------- */
-export const projectCardsQuery = `*[_type == "project" && !featured] | order(orderRank asc) ${PROJECT_CARD}`;
+export const projectCardsQuery = `*[_type == "project" && !featured] | order(coalesce(orderNumber, 2147483647) asc, _createdAt asc) ${PROJECT_CARD}`;
 
-export const featuredProjectQuery = `*[_type == "project" && featured == true][0] ${PROJECT_DETAIL}`;
+export const featuredProjectQuery = `*[_type == "project" && featured == true] | order(coalesce(orderNumber, 2147483647) asc, _createdAt asc)[0] ${PROJECT_DETAIL}`;
 
 export const projectBySlugQuery = `*[_type == "project" && slug.current == $slug][0] ${PROJECT_DETAIL}`;
 
-export const projectSlugsQuery = `*[_type == "project" && defined(slug.current)].slug.current`;
+export const projectSlugsQuery = `*[_type == "project" && defined(slug.current)] | order(coalesce(orderNumber, 2147483647) asc, _createdAt asc).slug.current`;
 
 // All projects (incl. featured), ordered — used to compute prev/next.
-export const allProjectsNavQuery = `*[_type == "project"] | order(orderRank asc) ${PROJECT_CARD}`;
+export const allProjectsNavQuery = `*[_type == "project"] | order(coalesce(orderNumber, 2147483647) asc, _createdAt asc) ${PROJECT_CARD}`;

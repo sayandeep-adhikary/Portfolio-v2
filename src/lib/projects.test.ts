@@ -7,6 +7,7 @@ import {
   getProjectBySlug,
   getProjectCards,
   projects,
+  sortProjectsByOrder,
 } from "@/lib/projects";
 
 describe("projects data", () => {
@@ -46,5 +47,18 @@ describe("getAdjacentProjects", () => {
 
   it("returns null neighbours for an unknown slug", () => {
     expect(getAdjacentProjects("nope")).toEqual({ previous: null, next: null });
+  });
+});
+
+describe("sortProjectsByOrder", () => {
+  it("sorts by explicit orderNumber before falling back to insertion order", () => {
+    const items = [
+      { slug: "c", title: "C", orderNumber: 10 },
+      { slug: "a", title: "A" },
+      { slug: "b", title: "B", orderNumber: 2 },
+      { slug: "d", title: "D", orderNumber: 2 },
+    ];
+
+    expect(sortProjectsByOrder(items).map((item) => item.slug)).toEqual(["b", "d", "c", "a"]);
   });
 });

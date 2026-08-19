@@ -18,6 +18,7 @@ export const projects: ProjectDetail[] = [
     technologies: ["Next.js", "TypeScript", "Tailwind CSS", "Sanity"],
     image: null,
     gallery: [],
+    orderNumber: 1,
     overview:
       "Northwind lets product teams design, theme, and ship interfaces from one place. I led the frontend rebuild, moving a heavy client-rendered app to a streaming, Server-Component architecture.",
     architecture:
@@ -48,6 +49,7 @@ export const projects: ProjectDetail[] = [
     technologies: ["Next.js", "TypeScript", "PostgreSQL"],
     image: null,
     gallery: [],
+    orderNumber: 2,
     overview:
       "Atlas turns a firehose of product events into live, explorable dashboards. The challenge was keeping the UI fluid while ingesting millions of events a day.",
     architecture:
@@ -73,6 +75,7 @@ export const projects: ProjectDetail[] = [
     technologies: ["Next.js", "Sanity", "Tailwind CSS"],
     image: null,
     gallery: [],
+    orderNumber: 3,
     overview:
       "Meridian is a fully editable marketing site where the content team owns every section. I built the block system and the performance foundation.",
     architecture:
@@ -98,6 +101,7 @@ export const projects: ProjectDetail[] = [
     technologies: ["React", "TypeScript", "Radix"],
     image: null,
     gallery: [],
+    orderNumber: 4,
     overview:
       "Prism is an accessible, themeable React component library built on unstyled primitives. It focuses on keyboard support and predictable APIs.",
     architecture:
@@ -123,6 +127,7 @@ export const projects: ProjectDetail[] = [
     technologies: ["Node.js", "TypeScript"],
     image: null,
     gallery: [],
+    orderNumber: 5,
     overview:
       "Forge scaffolds opinionated, production-ready projects — linting, testing, CI, and deploy config included — from a single command.",
     architecture:
@@ -148,6 +153,7 @@ export const projects: ProjectDetail[] = [
     technologies: ["React", "IndexedDB", "Vite"],
     image: null,
     gallery: [],
+    orderNumber: 6,
     overview:
       "Cadence helps people build habits with a fast, offline-first experience that syncs the moment a connection returns.",
     architecture:
@@ -173,6 +179,7 @@ export const projects: ProjectDetail[] = [
     technologies: ["Next.js", "Tailwind CSS"],
     image: null,
     gallery: [],
+    orderNumber: 7,
     overview:
       "Studio Folio is a polished, customizable portfolio template for design studios, built to be fast out of the box and easy to theme.",
     architecture:
@@ -188,6 +195,19 @@ export const projects: ProjectDetail[] = [
     links: { live: "https://example.com", caseStudy: "/work/studio-folio" },
   },
 ];
+
+export function sortProjectsByOrder<T extends { slug: string; orderNumber?: number | null }>(items: T[]): T[] {
+  return [...items].sort((a, b) => {
+    const aOrder = typeof a.orderNumber === "number" ? a.orderNumber : Number.MAX_SAFE_INTEGER;
+    const bOrder = typeof b.orderNumber === "number" ? b.orderNumber : Number.MAX_SAFE_INTEGER;
+
+    if (aOrder !== bOrder) {
+      return aOrder - bOrder;
+    }
+
+    return a.slug.localeCompare(b.slug);
+  });
+}
 
 const toCard = ({
   slug,
@@ -215,12 +235,12 @@ export function getFeaturedProject(): ProjectDetail | undefined {
 
 /** Non-featured projects as card projections, for the grid. */
 export function getProjectCards(): ProjectCardData[] {
-  return projects.filter((project) => !project.featured).map(toCard);
+  return sortProjectsByOrder(projects.filter((project) => !project.featured)).map(toCard);
 }
 
 /** All projects (incl. featured) as ordered card projections — used for prev/next. */
 export function getAllProjectCards(): ProjectCardData[] {
-  return projects.map(toCard);
+  return sortProjectsByOrder(projects).map(toCard);
 }
 
 export function getProjectBySlug(slug: string): ProjectDetail | undefined {
@@ -237,10 +257,11 @@ export type AdjacentProjects = {
 };
 
 export function getAdjacentProjects(slug: string): AdjacentProjects {
-  const currentIndex = projects.findIndex((project) => project.slug === slug);
+  const orderedProjects = sortProjectsByOrder(projects);
+  const currentIndex = orderedProjects.findIndex((project) => project.slug === slug);
   if (currentIndex === -1) return { previous: null, next: null };
-  const previous = currentIndex > 0 ? projects[currentIndex - 1] : undefined;
-  const next = currentIndex < projects.length - 1 ? projects[currentIndex + 1] : undefined;
+  const previous = currentIndex > 0 ? orderedProjects[currentIndex - 1] : undefined;
+  const next = currentIndex < orderedProjects.length - 1 ? orderedProjects[currentIndex + 1] : undefined;
   return {
     previous: previous ? toCard(previous) : null,
     next: next ? toCard(next) : null,

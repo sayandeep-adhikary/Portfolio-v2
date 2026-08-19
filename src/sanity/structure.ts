@@ -25,7 +25,7 @@ export const structure: StructureResolver = (S, context) =>
         S.listItem().title(title).id(type).child(S.document().schemaType(type).documentId(type)),
       ),
       S.divider(),
-      orderableDocumentListDeskItem({ type: "project", title: "Projects", S, context }),
+      S.listItem().title("Projects").id("project").child(S.documentTypeList("project")),
       orderableDocumentListDeskItem({ type: "galleryItem", title: "Gallery", S, context }),
       orderableDocumentListDeskItem({ type: "socialLink", title: "Social links", S, context }),
     ]);

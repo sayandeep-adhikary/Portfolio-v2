@@ -284,6 +284,12 @@ export const project = defineType({
       options: { source: "title" },
       validation: (r) => r.required(),
     }),
+    defineField({
+      name: "orderNumber",
+      type: "number",
+      description: "Manual portfolio order. Lower numbers appear first in the project list.",
+      validation: (r) => r.min(1),
+    }),
     defineField({ name: "featured", type: "boolean", initialValue: false }),
     orderRankField({ type: "project" }),
     defineField({ name: "description", type: "text", rows: 2 }),

@@ -128,6 +128,7 @@ export type ProjectDetail = {
   challenges: string[];
   lessons: string[];
   links: ProjectLinks;
+  orderNumber?: number;
   featured?: boolean;
 };
 
