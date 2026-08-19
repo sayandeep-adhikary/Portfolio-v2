@@ -196,7 +196,9 @@ export const projects: ProjectDetail[] = [
   },
 ];
 
-export function sortProjectsByOrder<T extends { slug: string; orderNumber?: number | null }>(items: T[]): T[] {
+export function sortProjectsByOrder<T extends { slug: string; orderNumber?: number | null }>(
+  items: T[],
+): T[] {
   return [...items].sort((a, b) => {
     const aOrder = typeof a.orderNumber === "number" ? a.orderNumber : Number.MAX_SAFE_INTEGER;
     const bOrder = typeof b.orderNumber === "number" ? b.orderNumber : Number.MAX_SAFE_INTEGER;
@@ -261,7 +263,8 @@ export function getAdjacentProjects(slug: string): AdjacentProjects {
   const currentIndex = orderedProjects.findIndex((project) => project.slug === slug);
   if (currentIndex === -1) return { previous: null, next: null };
   const previous = currentIndex > 0 ? orderedProjects[currentIndex - 1] : undefined;
-  const next = currentIndex < orderedProjects.length - 1 ? orderedProjects[currentIndex + 1] : undefined;
+  const next =
+    currentIndex < orderedProjects.length - 1 ? orderedProjects[currentIndex + 1] : undefined;
   return {
     previous: previous ? toCard(previous) : null,
     next: next ? toCard(next) : null,

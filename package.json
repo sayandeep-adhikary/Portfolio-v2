@@ -2,6 +2,8 @@
   "name": "portfolio",
   "version": "0.1.0",
   "private": true,
+  "license": "UNLICENSED",
+  "author": "Sayandeep Adhikary <sayandeepadhikary2003@gmail.com>",
   "type": "module",
   "scripts": {
     "dev": "next dev",

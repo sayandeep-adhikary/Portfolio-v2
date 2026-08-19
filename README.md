@@ -9,6 +9,17 @@ accessible to WCAG 2.2 AA, and maintainable enough to hand to another engineer.
 > [`src/lib/content.ts`](src/lib/content.ts) (or Sanity once configured). Replace the
 > placeholders (`"Portfolio"`, `"@username"`) with real values.
 
+## Copyright and reuse policy
+
+Copyright © 2026 Sayandeep Adhikary. All rights reserved.
+
+This repository is a personal portfolio project and is not a reusable template. The
+code, layout, styling, content, assets, and project structure are protected by copyright
+law. You may not copy, redistribute, adapt, reuse, or repurpose this project as a
+portfolio template or for any derivative project without explicit written permission.
+
+The full legal text is in [LICENSE](LICENSE).
+
 ## Highlights
 
 - **Server-first.** Every route is statically prerendered; only nine small client
@@ -146,4 +157,5 @@ optimization on self-hosted Node. Security headers (CSP, HSTS, `X-Content-Type-O
 
 ## License
 
-[MIT](LICENSE)
+This project is copyrighted and distributed under a custom all-rights-reserved license.
+See [LICENSE](LICENSE) for the complete terms.
