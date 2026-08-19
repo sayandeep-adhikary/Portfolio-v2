@@ -43,6 +43,9 @@ export function buildMetadata(overrides: Metadata = {}): Metadata {
         "max-video-preview": -1,
       },
     },
+    verification: {
+      google: "68LS8tZ9LNi2l_llSsPuI1_Cyyn5BrTGznVi-zv6m08",
+    },
     ...overrides,
   };
 }
